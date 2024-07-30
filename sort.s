@@ -17,21 +17,13 @@ _outer_loop:
     	LDR R4, [R0, R2, LSL #2]// array[inner array count] current index we are sorting
 	MOV R5, #0 //the inner_loop1 iteration count
 _inner_loop1:
-    	ADD R5, #1
-    	MOV R6, R2, LSL R5
-    	SUBLT R3, R3, R6
-    	ADDGT R3, R3, R6
-    	LDR R6, [R0, R3, LSL #2]//array[target index]
-    	CMP R5, R6
-    	BLT _iterate_above
-    	ADD R6, R3, #1
-    	LDR R6, [R0, R6, LSL #2]// array[target index + 1]
-    	CMP R5, R6
-    	BGT _iterate_below
-    	SUB R4, R2, R3
-    	ADD R4, R4, #-1
-    	LSL R3, #2
-    	ADD R3, R3, R0
+//R4 = array[innercount]
+//R5 = inner_loop1 iteration count
+//R6 = target index memory address
+//R7 = targetindex left/right value
+//R8? = innerarray count / (2 ^ R5)
+	
+    	
 
 
 	MLA R5, R2, #4, R0 //set r5 = (r2 *4) + R0 (inner array size + r0 in memory address, actual end of inner array size in memory)
