@@ -18,7 +18,10 @@ ascSort:
     	MOV R6, #0
     	MOV R7, #4
     	MOV R8, #0
-
+	CMP R1, R2
+	BEQ _finish
+	BLS _finish
+	CMP R8, R2
 _loop1:
     	MOV R3, R2// target index intiliazation
     	LDR R4, [R0, R2, LSL #2]// array[inner array count] current index we are sorting
