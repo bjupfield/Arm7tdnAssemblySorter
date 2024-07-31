@@ -54,14 +54,22 @@ uint32_t stringToNum(const char str[])
 
 void printArr(uint32_t* arr, uint32_t count)
 {
-    printf("[");
-    for(int i = 0; i < count - 1; i++)
+    if(count > 0)
     {
-        printf("%d, ", arr[i]);
-        if(((i + 1) % 4) == 0)
+        printf("[");
+        
+        for(int i = 0; i < count - 1; i++)
         {
-            printf("\n");
+            printf("%d, ", arr[i]);
+            if(((i + 1) % 4) == 0)
+            {
+                printf("\n");
+            }
         }
+        printf("%d]\n", arr[count - 1]);
     }
-    printf("%d]\n", arr[count - 1]);
+    else
+    {
+        printf("[{}]\n");
+    }
 }
