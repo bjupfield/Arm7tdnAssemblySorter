@@ -47,14 +47,13 @@ _loop2:
         BHI _loop2
 _preloop3:
     	MLA R5, R2, R7, R0 //set r5 = (r2 *4) + R0 (inner array size + r0 in memory address, actual end of inner array size in memory)
-    	MOV R6, R3
-        MLA R3, R6, R7, R0 //set r3 = (r3 * 4) + r0 (actually target index in memory address)
+        MLA R6, R3, R7, R0 //set r3 = (r3 * 4) + r0 (actually target index in memory address)
 _loop3:
-    	CMP R5, R3
-    	LDRNE R6, [R5, #-4]//loads innerarray size - 1
-    	STRNE R6, [R5], #-4//inserts innerarray size - 1 to inner array size
+    	CMP R5, R6
+    	LDRNE R3, [R5, #-4]//loads innerarray size - 1
+    	STRNE R3, [R5], #-4//inserts innerarray size - 1 to inner array size and reduces insert array size by 1
     	BNE _loop3
-    	STR R4, [R3]//stores our number we are sorting at the target index, after bumping up all the right side values to not overwrite any
+    	STR R4, [R6]//stores our number we are sorting at the target index, after bumping up all the right side values to not overwrite any
 	ADD R2, R2, #1
     	CMP R2, R1    	
 	BNE _loop1
